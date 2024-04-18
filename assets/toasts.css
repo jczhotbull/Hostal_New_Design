@@ -1,0 +1,52 @@
+
+@keyframes alertEnter {
+    from {
+        transform: translateX(500%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Animación de salida */
+@keyframes alertOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(500%);
+    }
+}
+
+@keyframes loaderToast {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.animate_in{
+    animation-name: alertEnter;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+}
+
+.animate_out{
+    animation-name: alertOut;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+}
+
+.toast-loader{
+    position: absolute;
+    z-index: 100000;
+    bottom: 0;
+    height: 2px;
+    background-color: black;
+    width: 100%;
+    animation-name: loaderToast;
+    animation-duration: 6s;
+    animation-timing-function: ease-out;
+}

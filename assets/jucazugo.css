@@ -1,0 +1,52 @@
+
+/*imagenes carnet en tablas */
+
+#myImg:hover {	
+	-webkit-transform: scale(1.5,1.5);   /* al pasar el mouse la imagen se agranda un poco, antes era 3,3 */
+	z-index: 3;
+}
+
+
+
+/*imagenes doc en tablas */
+#myImg_doc:hover {	
+	-webkit-transform: scale(1.6,1.6);   /* al pasar el mouse la imagen se agranda un poco, antes era 3,3 */
+	z-index: 3;
+}
+
+
+
+/*imagenes doc en tablas */
+#myImg_pass:hover {	
+	-webkit-transform: scale(1.5,1.5);   /* al pasar el mouse la imagen se agranda un poco, antes era 3,3 */
+	z-index: 3;
+}
+
+
+
+/* del boton de upload */
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  
+}
+
+
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+
+
+
+.importantex
+{
+  border-left: 4px solid #37b8df;
+}
