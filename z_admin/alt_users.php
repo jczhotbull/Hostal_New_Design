@@ -47,6 +47,497 @@ include ("consultas_add/query_users.php");
 
 
 
+$yo_soy = $_SESSION['id_per'];
+
+
+
+
+
+
+
+
+
+// lo siguiente confirma la actualizacion de la foto personal
+
+if(isset($_POST['update_pic_per']))
+    {
+$alerta_principal = "2";
+
+$pic_per_esta ="0";
+
+$update_pic_perdU = $_POST['update_pic_per'];
+
+$update_doc_perdU = $_POST['update_doc_per'];
+
+$id_update_perU = $_POST['id_update_per'];
+
+$id_data_update_perU = $_POST['id_data_update_per'];
+
+
+clearstatcache();
+$filenameUP = "00_croppie/pic_per_".$id_update_perU."_".$update_doc_perdU.".png";
+
+
+
+          if (file_exists($filenameUP )) {    // de haber una foto le cambia el nombre y la mueve a otro lugar            
+            $pic_per_esta ="1";
+
+            $extU = 'png';
+           
+            $newfilenameU = "img_personal/pic/".$update_pic_perdU."_".$update_doc_perdU.".".$extU;
+
+
+             
+            if(rename($filenameUP,$newfilenameU))
+      {     
+
+      include("../b_conectar.php");   
+
+          $query_fotoU = "UPDATE tb_data_personal SET pic_per = '$newfilenameU' WHERE id_data_per = '$id_data_update_perU' LIMIT 1 ";
+          
+
+          if (!mysqli_query($enlace,$query_fotoU))      // si no ha logrado ingresar la foto
+                   {
+
+           $errorZ.="- Error. ";
+
+                unlink($newfilenameU);
+                        
+              mysqli_close($enlace);
+
+                   }
+
+          else {
+          
+          $exitoZ .= "- Done. ";
+          mysqli_close($enlace);  
+
+            }   
+
+             
+      }
+
+            else{
+            
+            $errorZ.="- File Error. ";
+
+              unlink($filenameUP);
+                         
+              mysqli_close($enlace);
+
+
+            }
+                
+
+                 }  // cierre de que no hay foto..
+
+              
+                 if ($pic_per_esta =="0") {
+
+$alerta_principal = "2";
+ $errorZ="- File not available. ";  
+
+            }
+
+
+            if ($errorZ!="")     //  si $errorZ es distinto de vacío,  es que ha habido algun error
+                          {
+                             $errorZ = " <i class=\"fas fa-exclamation-triangle fa-lg\"></i> &nbsp; " . $errorZ. " ";
+                             
+                          }     
+
+
+                if ($exitoZ!="")            //  si $exitoZ es distinto de vacío,  es que todo ok
+                          {
+                             $exitoZ = " <i class=\"far fa-thumbs-up fa-lg\"></i> &nbsp; " . $exitoZ. "  ";            
+ 
+                           }
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// lo siguiente confirma la actualizacion del doc del personal
+
+if(isset($_POST['update_doc_per_doc']))
+    {
+$alerta_principal = "2";
+
+$doc_per_esta ="0";
+
+$update_pic_perdU = $_POST['update_doc_per_doc'];
+
+$update_doc_perdU = $_POST['update_doc_per2'];
+
+$id_update_perU = $_POST['update_doc_per_doc'];
+
+$id_data_update_perU = $_POST['id_data_update_per'];
+
+
+clearstatcache();
+$filenameUP = "00_croppie/doc_per_".$id_update_perU."_".$update_doc_perdU.".png";
+
+
+
+          if (file_exists($filenameUP )) {    // de haber una foto le cambia el nombre y la mueve a otro lugar            
+            $doc_per_esta ="1";
+
+            $extU = 'png';
+           
+            $newfilenameU = "img_personal/doc/".$update_pic_perdU."_".$update_doc_perdU.".".$extU;
+
+
+             
+            if(rename($filenameUP,$newfilenameU))
+      {     
+
+      include("../b_conectar.php");   
+
+          $query_fotoU = "UPDATE tb_data_personal SET pic_doc_per = '$newfilenameU' WHERE id_data_per = '$id_data_update_perU' LIMIT 1 ";
+          
+
+          if (!mysqli_query($enlace,$query_fotoU))      // si no ha logrado ingresar la foto
+                   {
+
+           $errorZ.="- Error. ";
+
+                unlink($newfilenameU);
+                        
+              mysqli_close($enlace);
+
+                   }
+
+          else {
+          
+          $exitoZ .= "- Done. ";
+          mysqli_close($enlace);  
+
+            }   
+
+             
+      }
+
+            else{
+            
+            $errorZ.="- File Error. ";
+
+              unlink($filenameUP);
+                         
+              mysqli_close($enlace);
+
+
+            }
+                
+
+                 }  // cierre de que no hay foto..
+
+              
+                 if ($doc_per_esta =="0") {
+
+$alerta_principal = "2";
+ $errorZ="- File not available. ";  
+
+            }
+
+
+            if ($errorZ!="")     //  si $errorZ es distinto de vacío,  es que ha habido algun error
+                          {
+                             $errorZ = " <i class=\"fas fa-exclamation-triangle fa-lg\"></i> &nbsp; " . $errorZ. " ";
+                             
+                          }     
+
+
+                if ($exitoZ!="")            //  si $exitoZ es distinto de vacío,  es que todo ok
+                          {
+                             $exitoZ = " <i class=\"far fa-thumbs-up fa-lg\"></i> &nbsp; " . $exitoZ. "  ";            
+ 
+                           }
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// lo siguiente confirma la actualizacion del passport del personal
+
+if(isset($_POST['update_passport_per_passport']))
+    {
+$alerta_principal = "2";
+
+$passport_per_esta ="0";
+
+
+$update_pic_perdU = $_POST['update_passport_per_passport'];
+
+$update_doc_perdU = $_POST['update_doc_per2'];
+
+$id_update_perU = $_POST['update_passport_per_passport'];
+
+$id_data_update_perU = $_POST['id_data_update_per'];
+
+
+
+
+
+
+clearstatcache();
+$filenameUP = "00_croppie/passport_per_".$id_update_perU."_".$update_doc_perdU.".png";
+
+
+
+          if (file_exists($filenameUP )) {    // de haber una foto le cambia el nombre y la mueve a otro lugar            
+            $passport_per_esta ="1";
+
+            $extU = 'png';
+           
+            $newfilenameU = "img_personal/passport/".$id_update_perU."_".$update_doc_perdU.".".$extU;
+
+
+             
+            if(rename($filenameUP,$newfilenameU))
+      {     
+
+      include("../b_conectar.php");   
+
+          $query_fotoU = "UPDATE tb_data_personal SET pic_passport_per = '$newfilenameU' WHERE id_data_per = '$id_data_update_perU' LIMIT 1 ";
+          
+
+          if (!mysqli_query($enlace,$query_fotoU))      // si no ha logrado ingresar la foto
+                   {
+
+           $errorZ.="- Error. ";
+
+                unlink($newfilenameU);
+                        
+              mysqli_close($enlace);
+
+                   }
+
+          else {
+          
+          $exitoZ .= "- Done. ";
+          mysqli_close($enlace);  
+
+            }   
+
+             
+      }
+
+            else{
+            
+            $errorZ.="- File Error. ";
+
+              unlink($filenameUP);
+                         
+              mysqli_close($enlace);
+
+
+            }
+                
+
+                 }  // cierre de que no hay foto..
+
+              
+                 if ($passport_per_esta =="0") {
+
+$alerta_principal = "2";
+ $errorZ="- File not available. ";  
+
+            }
+
+
+            if ($errorZ!="")     //  si $errorZ es distinto de vacío,  es que ha habido algun error
+                          {
+                             $errorZ = " <i class=\"fas fa-exclamation-triangle fa-lg\"></i> &nbsp; " . $errorZ. " ";
+                             
+                          }     
+
+
+                if ($exitoZ!="")            //  si $exitoZ es distinto de vacío,  es que todo ok
+                          {
+                             $exitoZ = " <i class=\"far fa-thumbs-up fa-lg\"></i> &nbsp; " . $exitoZ. "  ";            
+ 
+                           }
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+// borrar pic del personal
+
+if(isset($_POST['borrarXX_pic_per']))
+    {
+
+$alerta_principal = "2";
+
+include("../b_conectar.php");
+
+$queryKKC = "SELECT * FROM tb_data_personal WHERE id_data_per = '$_POST[id_data_per_RR]' LIMIT 1";
+
+                      $resultKKC = mysqli_query($enlace,$queryKKC);
+                      $filaKK=mysqli_fetch_array($resultKKC);         // lo anterior me permite tener el nombre del registro
+                                                                  // gracias al id ...
+
+
+$pic_a_borrar = $filaKK["pic_per"];
+
+                      if (!empty( $pic_a_borrar )) {   // si hay algo en pic, borra ese archivo
+                         
+                            unlink($pic_a_borrar);             
+
+$deleteXX = "UPDATE tb_data_personal SET pic_per = '' WHERE id_data_per = '$_POST[id_data_per_RR]' LIMIT 1 ";
+$resultXXC = mysqli_query($enlace,$deleteXX);
+
+                        $exitoZ="<i class=\"fa-regular fa-thumbs-up fa-lg\"></i> Pic deleted.";
+
+                         }  
+
+                         else {
+
+                            $errorZ="- Nothing to delete. ";
+                         }
+
+mysqli_close($enlace); 
+
+ }
+
+
+
+
+
+
+
+
+
+// borrar doc del personal
+
+if(isset($_POST['borrarXX_doc_per']))
+    {
+
+$alerta_principal = "2";
+
+include("../b_conectar.php");
+
+$queryKKC = "SELECT * FROM tb_data_personal WHERE id_data_per = '$_POST[id_data_per_RR]' LIMIT 1";
+
+                      $resultKKC = mysqli_query($enlace,$queryKKC);
+                      $filaKK=mysqli_fetch_array($resultKKC);         // lo anterior me permite tener el nombre del registro
+                                                                  // gracias al id ...
+
+
+$pic_a_borrar = $filaKK["pic_doc_per"];
+
+                      if (!empty( $pic_a_borrar )) {   // si hay algo en pic, borra ese archivo
+                         
+                            unlink($pic_a_borrar);             
+
+$deleteXX = "UPDATE tb_data_personal SET pic_doc_per = '' WHERE id_data_per = '$_POST[id_data_per_RR]' LIMIT 1 ";
+$resultXXC = mysqli_query($enlace,$deleteXX);
+
+                        $exitoZ="<i class=\"fa-regular fa-thumbs-up fa-lg\"></i> Doc or Id Pic deleted.";
+
+                         }  
+
+                         else {
+
+                            $errorZ="- Nothing to delete. ";
+                         }
+
+mysqli_close($enlace); 
+
+ }
+
+
+
+
+
+
+
+
+
+
+// borrar passport del personal
+
+if(isset($_POST['borrarXX_passport_per']))
+    {
+
+$alerta_principal = "2";
+
+include("../b_conectar.php");
+
+$queryKKC = "SELECT * FROM tb_data_personal WHERE id_data_per = '$_POST[id_data_per_RR]' LIMIT 1";
+
+                      $resultKKC = mysqli_query($enlace,$queryKKC);
+                      $filaKK=mysqli_fetch_array($resultKKC);         // lo anterior me permite tener el nombre del registro
+                                                                  // gracias al id ...
+
+
+$pic_a_borrar = $filaKK["pic_passport_per"];
+
+                      if (!empty( $pic_a_borrar )) {   // si hay algo en pic, borra ese archivo
+                         
+                            unlink($pic_a_borrar);             
+
+$deleteXX = "UPDATE tb_data_personal SET pic_passport_per = '' WHERE id_data_per = '$_POST[id_data_per_RR]' LIMIT 1 ";
+$resultXXC = mysqli_query($enlace,$deleteXX);
+
+                        $exitoZ="<i class=\"fa-regular fa-thumbs-up fa-lg\"></i> Passport deleted.";
+
+                         }  
+
+                         else {
+
+                            $errorZ="- Nothing to delete. ";
+                         }
+
+mysqli_close($enlace); 
+
+ }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -673,6 +1164,10 @@ if(isset($_POST['add_user']))  // chequea si se ha enviado algo, de ser si --> s
 
 
 
+
+
+
+
   include ("a_header.php");  ?>
 
 
@@ -696,7 +1191,7 @@ if(isset($_POST['add_user']))  // chequea si se ha enviado algo, de ser si --> s
 
                                     <!--      <form class="d-flex">
                                             <div class="input-group">
-                                                <input type="text" class="form-control form-control-sm form-control form-control-sm-light" id="dash-daterange">
+                                                <input type="text" class="form-control form-control-light" id="dash-daterange">
                                                 <span class="input-group-text bg-primary border-primary text-white">
                                                     <i class="mdi mdi-calendar-range font-13"></i>
                                                 </span>
@@ -730,20 +1225,13 @@ if(isset($_POST['add_user']))  // chequea si se ha enviado algo, de ser si --> s
                                 <div class="card">
                                     <div class="card-body">
 
-                                        
-
-
-
-
-
+                                       
  <div class="row mb-3">  <!-- Primer row -->
 
 
 
- <?php include ("updates/add_user.php"); ?> 
 
-
-
+ <?php include ("updates/add_user.php"); ?>  
 
 
 
@@ -756,18 +1244,14 @@ if(isset($_POST['add_user']))  // chequea si se ha enviado algo, de ser si --> s
 
 
 
-
-
-
-
-<div class="table-responsive row mt-2 mb-2">
+<div class="table-responsive row mb-2">
 
 
 <?php
 
 include ("../b_conectar.php");
 
-$queryFHL = "SELECT * FROM tb_personal, tb_address, sex, nationality, roles, tb_data_personal
+$queryFHL = "SELECT * FROM tb_personal, tb_address, sex, nationality, roles, tb_data_personal 
 WHERE tb_personal.id_address = tb_address.id_address 
 and   tb_personal.id_sex = sex.id_sex
 and   tb_personal.id_nationality = nationality.id_nationality
@@ -808,16 +1292,14 @@ mysqli_close($enlace);
 
             <th><i class="fa-solid fa-signature fa-lg"></i></th>
             <th><i class="fas fa-camera-retro fa-lg"></i></th>
+            <th><i class="fa-solid fa-gear fa-lg"></i></th>
 
-             <th><i class="fa-solid fa-briefcase fa-lg"></i></th>
-
-
-            <th><i class="fa-solid fa-book fa-lg"></i></th>   
-          
+            <th><i class="fa-solid fa-id-card fa-lg"></i></th>
+            <th><i class="fa-solid fa-crop fa-lg"></i></th>  
 
 
-            <th><i class="fa-solid fa-earth-americas fa-lg"></i></th> 
-         
+            <th><i class="fa-solid fa-passport fa-lg"></i></th>
+            <th><i class="fa-solid fa-gears fa-lg"></i></th>
 
             <th><i class="fa-regular fa-address-book fa-lg"></i></th>
 
@@ -865,29 +1347,14 @@ mysqli_close($enlace);
 <div data-toggle="tooltip" data-placement="top"
 title="Registered by: <?php echo $row_usuarios_whoL['p_surname_per'];?> <?php echo $row_usuarios_whoL['p_name_per'];?>. " >
 
-<span class="text-body fw-semibold"><?php echo $row_usuarios['p_name_per'];?> <?php echo $row_usuarios['s_name_per'];?> <br>
-
-<b><?php echo $row_usuarios['p_surname_per'];?> <?php echo $row_usuarios['s_surname_per'];?></b></span>
-
-
-</div>
-
-
-            </td>
-
-
-
-            <td class="align-middle" align="center">  
-
-<img id="myImg" src="<?php echo $row_usuarios['pic_per']; ?>?nocache=<?php echo time(); ?>" class="img-fluid rounded" width="50"
-                  alt="table-user"  onerror="this.src='img_personal/pic/000.jpg';"  /> 
-                
-            </td>
+<span class="text-body fw-semibold"><?php echo $row_usuarios['p_name_per'];?> <b><?php echo $row_usuarios['p_surname_per'];?></b></span>
+<br>
+<span class="text-info fw-semibold" style="font-size:12px;"><?php echo $row_usuarios['name_nationality']; ?></span> <br>
 
 
 
 
-             <td class="align-middle" align="center">  
+
 
 
  "<b><?php echo $row_usuarios['name_rol']; ?></b>" <br>
@@ -918,26 +1385,123 @@ data-bs-toggle="modal" data-bs-target="#activar<?php echo $row_usuarios['id_per'
 
 
 
+
+
+
+
+
+</div>
+
+
+            </td>
+
+
+
+            <td class="align-middle" align="center">  
+
+<img id="myImg" src="<?php echo $row_usuarios['pic_per']; ?>?nocache=<?php echo time(); ?>" class="img-fluid rounded" width="60"
+                  alt="table-user"  onerror="this.src='img_personal/pic/000.jpg';"  /> 
                 
             </td>
 
 
+
+
+            <td class="align-middle" align="center">
+
+          <div class="upload-btn-wrapper">
+
+          <div data-toggle="tooltip" data-placement="top" title="Update Pic." >
+                <a class="action-icon text-info" ><i class="fas fa-camera-retro"></i></a>
+
+                <input class="center-block punterodd" type="file" accept="image/*"
+                   name="upload_image_pic_per<?php echo $row_usuarios['id_per']; ?>" id="upload_image_pic_per<?php echo $row_usuarios['id_per']; ?>"
+                   onchange="return fileValidation<?php echo $row_usuarios['id_per']; ?>()" /> 
+          </div>
+          </div>
+
+
+
+
+  <?php include ("per_pic_mod/update_pic_per.php"); ?> 
+
+
+
+
+
+ <div data-toggle="tooltip" data-placement="top" title="Delete Pic." >
+
+                <a type="button" class="action-icon text-danger" data-bs-toggle="modal"
+                 data-bs-target="#borrar_pic_per<?php echo $row_usuarios['id_per']; ?>"> <i class="fa-solid fa-ban fa-lg"></i></a>
+    
+</div>
+
+
+<?php include ("per_pic_mod/delete_pic_per.php"); ?> 
+
+
+            
+            </td>
+
            
 
 
-            <td >
+            <td class="align-middle" align="center">
 
-<i class="fa-regular fa-address-card fa-lg"></i> <span class="text-muted"> <?php echo $row_usuarios['doc_per'];
- $id_del_personal = $row_usuarios['id_per']; // necesario para editar o eliminar ?></span> <br>
+<span class="text-muted"> <?php echo $row_usuarios['doc_per'];
+ $id_del_personal = $row_usuarios['id_per']; // necesario para editar o eliminar ?></span>
 
+<br>
 
-<i class="fa-solid fa-passport fa-lg"></i> <span class="text-muted"><b><?php echo $row_usuarios['passport_per'];  ?></b></span>   
+                  <img id="myImg_doc" src="<?php echo $row_usuarios['pic_doc_per']; ?>?nocache=<?php echo time(); ?>"
+                  alt="table-user"  onerror="this.src='img_personal/doc/000.jpg';" class="img-fluid rounded" width="80px" />
+
+                  <br>
+
+                  <span class="text-muted" style="font-size:12px;"><b><?php echo $row_usuarios['passport_per'];  ?></b></span>
+
 
                 
-            </td> 
+            </td>
 
 
-           
+            <td class="align-middle" align="center">
+
+
+
+  <div class="upload-btn-wrapper">
+
+          <div data-toggle="tooltip" data-placement="top" title="Update Doc or Id." >
+                <a class="action-icon text-info" ><i class="fas fa-id-card"></i></a>
+
+                <input class="center-block punterodd" type="file" accept="image/*"
+                   name="upload_image_doc_per<?php echo $row_usuarios['id_per']; ?>" id="upload_image_doc_per<?php echo $row_usuarios['id_per']; ?>"
+                   onchange="return fileValidation_doc_per<?php echo $row_usuarios['id_per']; ?>()" /> 
+          </div>
+
+  </div>
+
+
+
+  <?php include ("per_pic_mod/update_doc_per.php"); ?> 
+
+
+
+
+
+ <div data-toggle="tooltip" data-placement="top" title="Delete Doc or Id." >
+
+                <a type="button" class="action-icon text-danger" data-bs-toggle="modal"
+                 data-bs-target ="#borrar_doc_per<?php echo $row_usuarios['id_per']; ?>"> <i class="fa-solid fa-ban fa-lg"></i></a>
+
+        
+  </div>
+
+
+  <?php include ("per_pic_mod/delete_doc_per.php"); ?> 
+
+            
+            </td>
 
 
 
@@ -948,15 +1512,47 @@ data-bs-toggle="modal" data-bs-target="#activar<?php echo $row_usuarios['id_per'
 
             <td class="align-middle" align="center">
 
-<span class="fw-semibold"><?php echo $row_usuarios['name_nationality']; ?></span>
-<br>
-                  <span class="text-info"><b><?php echo $row_usuarios['email_per']; ?></b></span>
+                   <img id="myImg_pass" src="<?php echo $row_usuarios['pic_passport_per']; ?>?nocache=<?php echo time(); ?>"
+                  alt="table-user"  onerror="this.src='img_personal/passport/000.jpg';" class="img-fluid rounded" width="60px" /> 
 
             </td>
 
 
 
-           
+             <td class="align-middle" align="center">
+
+
+<div class="upload-btn-wrapper">
+
+          <div data-toggle="tooltip" data-placement="top" title="Update Passport." >  
+                <a class="action-icon text-info" ><i class="fa-solid fa-passport"></i></a>
+
+                <input class="center-block punterodd" type="file" accept="image/*"
+                   name="upload_image_passport_per<?php echo $row_usuarios['id_per']; ?>" id="upload_image_passport_per<?php echo $row_usuarios['id_per']; ?>"
+                   onchange="return fileValidation_passport_per<?php echo $row_usuarios['id_per']; ?>()" /> 
+          </div>
+
+  </div>
+
+  <?php include ("per_pic_mod/update_passport_per.php"); ?> 
+ 
+
+
+
+  <div data-toggle="tooltip" data-placement="top" title="Delete Passport." >
+
+                <a type="button" class="action-icon text-danger" data-bs-toggle="modal"
+                 data-bs-target="#borrar_passport_per<?php echo $row_usuarios['id_per']; ?>"> <i class="fa-solid fa-ban fa-lg"></i></a>
+        
+  </div>
+
+
+
+  <?php include ("per_pic_mod/delete_passport_per.php"); ?> 
+
+
+               
+            </td>
 
 
 
@@ -969,7 +1565,8 @@ data-bs-toggle="modal" data-bs-target="#activar<?php echo $row_usuarios['id_per'
                                                         if (!$row_usuarios['b_phone_per'] == "") {       
                                                             echo " <br>" .$row_usuarios['b_phone_per'];
                                                           } 
-                  ?>
+                  ?><br>
+                  <span class="text-info"><b><?php echo $row_usuarios['email_per']; ?></b></span>
 
                 
             </td>
@@ -981,8 +1578,8 @@ data-bs-toggle="modal" data-bs-target="#activar<?php echo $row_usuarios['id_per'
 
             <td class="table-action">
 
-<a type="button" class="action-icon text-info" data-bs-toggle="modal"
-                  data-bs-target="#modificar<?php echo $row_usuarios['id_per']; ?>">
+<a type="button" class="action-icon text-info" data-toggle="modal"
+                  data-target="#modificar<?php echo $row_usuarios['id_per']; ?>">
                                                                         <!-- este ultimo identifica cual modal abrir -->
                   <i class="fas fa-edit"></i></a>    
 
@@ -994,8 +1591,8 @@ data-bs-toggle="modal" data-bs-target="#activar<?php echo $row_usuarios['id_per'
 
 
 
-<a type="button" class="action-icon" data-bs-toggle="modal" id="pp"
-                  data-bs-target="#password<?php echo $row_usuarios['id_per']; ?>">
+<a type="button" class="action-icon" data-toggle="modal"
+                  data-target="#password<?php echo $row_usuarios['id_per']; ?>">
                                                                         <!-- este ultimo identifica cual modal abrir -->
                   <i class="fa-solid fa-key"></i></a>    
 
@@ -1004,8 +1601,10 @@ data-bs-toggle="modal" data-bs-target="#activar<?php echo $row_usuarios['id_per'
 
 
 
-<a type="button" class="action-icon text-danger" data-bs-toggle="modal" id="pp"
-                  data-bs-target="#borrar<?php echo $row_usuarios['id_per']; ?>">
+
+
+<a type="button" class="action-icon text-danger" data-toggle="modal"
+                  data-target="#borrar<?php echo $row_usuarios['id_per']; ?>">
                                                                         <!-- este ultimo identifica cual modal abrir -->
 
                   <i class="far fa-trash-alt"></i></a>           

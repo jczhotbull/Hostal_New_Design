@@ -62,7 +62,7 @@ $filenameUP = "00_croppie/pic_per_".$id_update_perU."_".$update_doc_perdU.".png"
 
             $extU = 'png';
            
-            $newfilenameU = "img_per/".$update_pic_perdU."_".$update_doc_perdU.".".$extU;
+            $newfilenameU = "img_personal/pic/".$update_pic_perdU."_".$update_doc_perdU.".".$extU;
 
 
              
@@ -175,7 +175,7 @@ $filenameUP = "00_croppie/doc_per_".$id_update_perU."_".$update_doc_perdU.".png"
 
             $extU = 'png';
            
-            $newfilenameU = "img_doc_per/".$update_pic_perdU."_".$update_doc_perdU.".".$extU;
+            $newfilenameU = "img_personal/doc/".$update_pic_perdU."_".$update_doc_perdU.".".$extU;
 
 
              
@@ -293,7 +293,7 @@ $filenameUP = "00_croppie/passport_per_".$id_update_perU."_".$update_doc_perdU."
 
             $extU = 'png';
            
-            $newfilenameU = "img_passport_per/".$id_update_perU."_".$update_doc_perdU.".".$extU;
+            $newfilenameU = "img_personal/passport/".$id_update_perU."_".$update_doc_perdU.".".$extU;
 
 
              
@@ -399,7 +399,7 @@ $pic_a_borrar = $filaKK["pic_per"];
 $deleteXX = "UPDATE tb_data_personal SET pic_per = '' WHERE id_data_per = '$_POST[id_data_per_RR]' LIMIT 1 ";
 $resultXXC = mysqli_query($enlace,$deleteXX);
 
-                        $exitoZ="<i class=\"fa-regular fa-thumbs-up fa-lg\"></i>";
+                        $exitoZ="<i class=\"fa-regular fa-thumbs-up fa-lg\"></i> Pic deleted.";
 
                          }  
 
@@ -445,7 +445,7 @@ $pic_a_borrar = $filaKK["pic_doc_per"];
 $deleteXX = "UPDATE tb_data_personal SET pic_doc_per = '' WHERE id_data_per = '$_POST[id_data_per_RR]' LIMIT 1 ";
 $resultXXC = mysqli_query($enlace,$deleteXX);
 
-                        $exitoZ="<i class=\"fa-regular fa-thumbs-up fa-lg\"></i>";
+                        $exitoZ="<i class=\"fa-regular fa-thumbs-up fa-lg\"></i> Doc or Id Pic deleted.";
 
                          }  
 
@@ -467,44 +467,48 @@ mysqli_close($enlace);
 
 
 
+// borrar passport del personal
+
+if(isset($_POST['borrarXX_passport_per']))
+    {
+
+$alerta_principal = "2";
+
+include("../b_conectar.php");
+
+$queryKKC = "SELECT * FROM tb_data_personal WHERE id_data_per = '$_POST[id_data_per_RR]' LIMIT 1";
+
+                      $resultKKC = mysqli_query($enlace,$queryKKC);
+                      $filaKK=mysqli_fetch_array($resultKKC);         // lo anterior me permite tener el nombre del registro
+                                                                  // gracias al id ...
+
+
+$pic_a_borrar = $filaKK["pic_passport_per"];
+
+                      if (!empty( $pic_a_borrar )) {   // si hay algo en pic, borra ese archivo
+                         
+                            unlink($pic_a_borrar);             
+
+$deleteXX = "UPDATE tb_data_personal SET pic_passport_per = '' WHERE id_data_per = '$_POST[id_data_per_RR]' LIMIT 1 ";
+$resultXXC = mysqli_query($enlace,$deleteXX);
+
+                        $exitoZ="<i class=\"fa-regular fa-thumbs-up fa-lg\"></i> Passport deleted.";
+
+                         }  
+
+                         else {
+
+                            $errorZ="- Nothing to delete. ";
+                         }
+
+mysqli_close($enlace); 
+
+ }
 
 
 
 
 
-if(isset($_POST['editar_password_personal']))
-{
-
- include("../b_conectar.php");
-
-$el_per_per_id_id = $_POST['editar_password_personal'];
-
-$pass= mysqli_real_escape_string($enlace,$_POST['pass_per_mod']);  // almaceno el valor de clave limpio
-$passwordHasheada=md5( md5 ($el_per_per_id_id) . $pass ) ;
- 
-
-$sql_pp = "UPDATE tb_personal SET password_per = '$passwordHasheada'
-
-                                                WHERE id_per='$_POST[editar_password_personal]' LIMIT 1 ";
-
-                       
-                            if (!mysqli_query($enlace,$sql_pp))      // actualiza y si no ha logrado ingresar los datos
-                                   {
-                                    $errorZ="- Error Info. ";
-                                    mysqli_close($enlace);
-                                  
-                                    }
-
-                             else{   // actualizo el pass
-
-                     $exitoZ = " <i class=\"far fa-thumbs-up fa-lg\"></i>  &nbsp; <b> Pass Updated.</b>"; 
-                     mysqli_close($enlace); 
-
-                                }
-
-
-
-}
 
 
 
@@ -608,14 +612,125 @@ mysqli_close($enlace);
 
 
 
-<div class="col-xl-4 col-lg-5">    <!-- inicio izquierdo -->
+<div class="col-xl-3 col-lg-4">    <!-- inicio izquierdo -->
 
-                                <div class="card text-center">   <!-- foto del usuario -->
+                               
+
+
+
+                                <div class="card text-center">   <!-- todas las fotos del usuario -->
                                     <div class="card-body">
 
 
+
+
+
+<ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
+
+    <li class="nav-item">
+        <a href="#home1" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
+            <i class="mdi mdi-home-variant d-md-none d-block"></i>
+            <span class="d-none d-md-block"><i class="fas fa-id-card fa-lg"></i></span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="#profile1" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0 active">
+            <i class="mdi mdi-account-circle d-md-none d-block"></i>
+            <span class="d-none d-md-block"><i class="fa-solid fa-camera-retro fa-lg"></i></span>  
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="#settings1" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
+            <i class="mdi mdi-settings-outline d-md-none d-block"></i>
+            <span class="d-none d-md-block"><i class="fa-solid fa-passport fa-lg"></i></span>
+        </a>
+    </li>
+</ul>
+
+<div class="tab-content">
+
+
+
+
+
+
+    <div class="tab-pane" id="home1">    <!-- doc id -->
+
+<img  src="<?php echo $row_usuarios['pic_doc_per']; ?>?nocache=<?php echo time(); ?>" class="mt-4 img-fluid rounded" width="174"
+                  alt="profile-image"  onerror="this.src='img_personal/doc/000.jpg'; this.width='174';"  />
+
+      
+<div class="row mt-4">
+<div class="col-xl-6 col-lg-6 text-lg-end">
+
+
+          <div class="upload-btn-wrapper">
+
+          <div data-toggle="tooltip" data-placement="top" title="Update Doc or Id." >
+                <a class="action-icon text-info" ><i class="fas fa-id-card fa-2x"></i></a>
+
+<input class="center-block punterodd" type="file" accept="image/*"
+name="upload_image_doc_per<?php echo $row_usuarios['id_per']; ?>" id="upload_image_doc_per<?php echo $row_usuarios['id_per']; ?>"
+                   onchange="return fileValidation_doc_per<?php echo $row_usuarios['id_per']; ?>()" /> 
+          </div>
+
+
+          </div>
+
+  <?php include ("per_pic_mod/update_doc_per.php"); ?> 
+
+   </div> <!-- cierre div -->
+
+
+
+
+<div class="col-xl-6 col-lg-6 text-lg-start">
+
+ <div data-toggle="tooltip" data-placement="top" title="Delete Doc or Id." >
+
+                <a type="button" class="action-icon text-danger" data-bs-toggle="modal"
+                 data-bs-target ="#borrar_doc_per<?php echo $row_usuarios['id_per']; ?>"> <i class="fa-solid fa-ban fa-2x"></i></a>
+
+        
+  </div>
+
+
+
+  <?php include ("per_pic_mod/delete_doc_per.php"); ?> 
+
+
+</div> <!-- cierre div -->
+</div>     <!-- cierre row -->   
+
+
+
+
+       
+    </div>  <!-- cierre doc id -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="tab-pane show active" id="profile1">  <!-- pic personal -->
+
 <img  src="<?php echo $row_usuarios['pic_per']; ?>?nocache=<?php echo time(); ?>" class="img-fluid rounded" width="100"
-                  alt="profile-image"  onerror="this.src='img_per/000.jpg';"  />
+                  alt="profile-image"  onerror="this.src='img_personal/pic/000.jpg';  this.width='100';"  />
 
                                         <h4 class="mb-0 mt-2"><?php echo $row_usuarios['p_name_per'];?> <?php echo $row_usuarios['p_surname_per'];?></h4>
                                         <p class="text-muted font-14"><?php echo $row_usuarios['name_rol']; ?></p>
@@ -632,8 +747,8 @@ mysqli_close($enlace);
           <div data-toggle="tooltip" data-placement="top" title="Update Pic." >
                 <a class="action-icon text-info" ><i class="fas fa-camera-retro fa-2x"></i></a>
 
-                <input class="center-block" type="file" accept="image/*"
-                   name="upload_image_pic_per<?php echo $row_usuarios['id_per']; ?>" id="upload_image_pic_per<?php echo $row_usuarios['id_per']; ?>"
+<input class="center-block punterodd" type="file" accept="image/*"
+      name="upload_image_pic_per<?php echo $row_usuarios['id_per']; ?>" id="upload_image_pic_per<?php echo $row_usuarios['id_per']; ?>"
                    onchange="return fileValidation<?php echo $row_usuarios['id_per']; ?>()" /> 
           </div>
           </div>
@@ -641,6 +756,12 @@ mysqli_close($enlace);
   <?php include ("per_pic_mod/update_pic_per.php"); ?> 
 
    </div> <!-- cierre div -->
+
+
+
+
+
+
 
 
 
@@ -659,172 +780,13 @@ mysqli_close($enlace);
 
 
 </div> <!-- cierre div -->
-</div>     <!-- cierre row -->                             
-
-
-
-
-                                        
-                                    </div> <!-- end card-body -->
-                                </div> <!-- end card foto usuario-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                 <div class="card text-center">   <!-- documentos del usuario  doc y pass -->
-
-
-<div class="row">
-<div class="col-xl-6 col-lg-6">
-                                    <div class="card-body">
-
-                                        <img  src="<?php echo $row_usuarios['pic_doc_per']; ?>?nocache=<?php echo time(); ?>" class="mt-4 img-fluid rounded" width="160"
-                  alt="profile-image"  onerror="this.src='img_doc_per/000.jpg';"  />
-
-                   
-
-
-                                    </div> <!-- end card-body   contiene solo el documento-->
-
-</div>             <!-- cierre col izq del doc-->                  
-
-
-
-
-
-
-
-
-
-
-<div class="col-xl-6 col-lg-6">
-                                    <div class="card-body">
-
-                                        <img  src="<?php echo $row_usuarios['pic_passport_per']; ?>?nocache=<?php echo time(); ?>" class="img-fluid rounded" width="140"
-                  alt="profile-image"  onerror="this.src='img_passport_per/000.jpg';"  />
-
-                                                                            
-                             
-
-
-
-                                    </div> <!-- end card-body del passport -->
-</div>     <!-- cierre col dere del pass-->        
-
-
-
-
-
-
-</div><!-- cierre row izq doc  y el derecho  passport -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-<div class="row">  <!-- nuevo row solo de botones -->
-<div class="col-xl-6 col-lg-6">
-                                    <div class="card-body">
-
-                                                                                                             
-                                        
-
-<div class="row">
-<div class="col-xl-6 col-lg-6 text-lg-end">
-
-
-      
-  <div class="upload-btn-wrapper">
-
-          <div data-toggle="tooltip" data-placement="top" title="Update Doc or Id." >
-                <a class="action-icon text-info" ><i class="fas fa-id-card fa-2x"></i></a>
-
-                <input class="center-block " type="file" accept="image/*"
-                   name="upload_image_doc_per<?php echo $row_usuarios['id_per']; ?>" id="upload_image_doc_per<?php echo $row_usuarios['id_per']; ?>"
-                   onchange="return fileValidation_doc_per<?php echo $row_usuarios['id_per']; ?>()" /> 
-          </div>
-
-  </div>
-
-
-
-  <?php include ("per_pic_mod/update_doc_per.php"); ?> 
-
-   </div> <!-- cierre div -->
-
-
-
-
-<div class="col-xl-6 col-lg-6 text-lg-start">
-
-
-  <div data-toggle="tooltip" data-placement="top" title="Delete Doc or Id." >
-
-                <a type="button" class="action-icon text-danger" data-toggle="modal"
-                 data-target="#borrar_doc_per<?php echo $row_usuarios['id_per']; ?>"> <i class="fa-solid fa-ban fa-2x"></i></a>
+</div>     <!-- cierre row -->   
         
-  </div>
 
 
 
-  <?php include ("per_pic_mod/delete_doc_per.php"); ?> 
-
-
-</div> <!-- cierre div -->
-</div>     <!-- cierre row -->    
-
-
-
-                                    </div> <!-- end card-body   contiene solo el documento-->
-
-</div>             <!-- cierre col izq del doc-->                  
+    </div>   <!-- cierre pic personal -->
+  
 
 
 
@@ -833,37 +795,33 @@ mysqli_close($enlace);
 
 
 
+    <div class="tab-pane" id="settings1">  <!-- passport personal -->
+
+
+ <img  src="<?php echo $row_usuarios['pic_passport_per']; ?>?nocache=<?php echo time(); ?>" class="img-fluid rounded" width="140"
+                  alt="profile-image"  onerror="this.src='img_personal/passport/000.jpg';  this.width='170';"  />
 
 
 
-
-
-<div class="col-xl-6 col-lg-6">
-                                    <div class="card-body">
-
-                                       
-
-                                                                            
-                                        
-
-
-<div class="row">
+<div class="row mt-1">
 <div class="col-xl-6 col-lg-6 text-lg-end">
 
 
-<div class="upload-btn-wrapper">
+          <div class="upload-btn-wrapper">
 
-          <div data-toggle="tooltip" data-placement="top" title="Update Passport." >  
+         <div data-toggle="tooltip" data-placement="top" title="Update Passport." >  
                 <a class="action-icon text-info" ><i class="fa-solid fa-passport fa-2x"></i></a>
 
-                <input class="center-block " type="file" accept="image/*"
+                <input class="center-block punterodd" type="file" accept="image/*"
                    name="upload_image_passport_per<?php echo $row_usuarios['id_per']; ?>" id="upload_image_passport_per<?php echo $row_usuarios['id_per']; ?>"
                    onchange="return fileValidation_passport_per<?php echo $row_usuarios['id_per']; ?>()" /> 
           </div>
 
-  </div>
 
-  <?php include ("per_pic_mod/update_passport_per.php"); ?> 
+
+          </div>
+
+   <?php include ("per_pic_mod/update_passport_per.php"); ?> 
 
    </div> <!-- cierre div -->
 
@@ -874,8 +832,8 @@ mysqli_close($enlace);
 
   <div data-toggle="tooltip" data-placement="top" title="Delete Passport." >
 
-                <a type="button" class="action-icon text-danger" data-toggle="modal"
-                 data-target="#borrar_passport_per<?php echo $row_usuarios['id_per']; ?>"> <i class="fa-solid fa-ban fa-2x"></i></a>
+                <a type="button" class="action-icon text-danger" data-bs-toggle="modal"
+                 data-bs-target="#borrar_passport_per<?php echo $row_usuarios['id_per']; ?>"> <i class="fa-solid fa-ban fa-2x"></i></a>
         
   </div>
 
@@ -885,11 +843,15 @@ mysqli_close($enlace);
 
 
 </div> <!-- cierre div -->
-</div>     <!-- cierre row -->    
+</div>     <!-- cierre row -->   
+        
 
 
 
+       
+    </div>    <!-- cierre passport personal -->
 
+</div>
 
 
 
@@ -910,60 +872,10 @@ mysqli_close($enlace);
 
 
 
+                                        
+                                    </div> <!-- end card-body -->
+                                </div> <!-- end card todas las fotos del usuario-->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                    </div> <!-- end card-body del passport -->
-</div>     <!-- cierre col dere del pass-->        
-
-
-
-
-
-
-</div><!-- cierre row izq doc  y el derecho  passport -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                </div> <!-- end card  donde estan las fotos solo del doc y el pass -->
 
 
 </div> <!-- cierre div izquierdo, contiene foto, doc y pass-->
@@ -1001,7 +913,7 @@ mysqli_close($enlace);
 
 
 
-<div class="col-xl-8 col-lg-7"> <!-- inicio col derecho -->
+<div class="col-xl-9 col-lg-8"> <!-- inicio col derecho -->
 
 
 

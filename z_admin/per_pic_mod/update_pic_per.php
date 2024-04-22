@@ -1,4 +1,3 @@
-
 <?php
 
  if(isset($_POST['cancelXX_pic_per']))
@@ -15,10 +14,15 @@ unlink($filename_pic_per);
 }
 
 
-
-
-
 ?>
+
+
+
+
+
+
+
+
 
 
 
@@ -26,20 +30,28 @@ unlink($filename_pic_per);
 
 <!-- The Modal -->
 
-<div class="modal fade" id="mod_pic_per<?php echo $row_usuarios['id_per']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-  <div class="modal-dialog modal-lg" role="document">
+<div class="modal fade" id="mod_pic_per<?php echo $row_usuarios['id_per']; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog" >
     <div class="modal-content">
 
-    <!--   <div class="modal-header">
-         <h5 class="modal-title"><i class="fa-solid fa-ruler-combined"></i></h5> 
-                
-      </div>-->
+ <!-- <div class="modal-header">
+                <h5 class="modal-title text-danger" id="mySmallModalLabel">Warning</h5>
+    
+            </div>  -->
 
       <div class="modal-body">
-        <div class="form-row">
-            <div class="col-md-12">
 
-                <div class="col-md-12 mt-1 card border-info divXXheight">
+
+
+
+
+
+
+
+
+            <div class="col-12">
+
+                <div class="col-12 mt-1 card ">
 
                     <div class="mt-2">
                           <div style=" overflow: hidden;" id="image_demo_pic_per<?php echo $row_usuarios['id_per']; ?>"></div>
@@ -49,11 +61,12 @@ unlink($filename_pic_per);
 
 
 
-<div class="form-row">
-<div class="mx-auto col-md-12">
+<div class="row">
+<div class="col-12">
 
 
- <button class="rotateRight col-md-1 mt-2 btn btn-outline-secondary" id="rotateRight_pic<?php echo $row_usuarios['id_per']; ?>" data-deg="90"><i class="fa-solid fa-rotate-left fa-lg"></i></button> 
+ <button class="rotateRight col-md-1 mt-2 btn btn-outline-secondary" id="rotateRight_pic<?php echo $row_usuarios['id_per']; ?>" 
+  data-deg="90"><i class="fa-solid fa-rotate-left fa-lg"></i></button> 
 
 
 
@@ -70,19 +83,9 @@ unlink($filename_pic_per);
 
 
 
+                     <div class="row ">  <!-- mensaje q aprece -->
 
-
-
-
-
-
-
-
-
-
-                     <div class="form-row ">  <!-- mensaje q aprece -->
-
-                     <div class="content_pic_per<?php echo $row_usuarios['id_per']; ?> mt-1 mb-1 col-md-12 text-center" style="display:none">
+                     <div class="content_pic_per<?php echo $row_usuarios['id_per']; ?> mt-1 mb-1 col-12 text-center" style="display:none">
 
                      <b class="text-info"> <i class="fas fa-spinner fa-lg fa-spin"></i></b>
 
@@ -91,7 +94,7 @@ unlink($filename_pic_per);
 
                      
 
-                     <div class="content2_pic_per<?php echo $row_usuarios['id_per']; ?> mt-1 mb-1 col-md-12 text-center" style="display:none">
+                     <div class="content2_pic_per<?php echo $row_usuarios['id_per']; ?> mt-1 mb-1 col-12 text-center" style="display:none">
 
                     </div>
 
@@ -107,13 +110,43 @@ unlink($filename_pic_per);
 
 
             </div>
-        </div>
-      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>  <!-- cierre modal body -->
+
+
+
+
 
 
        <div class="modal-footer">
 
-        <form method="POST"  name="actualizar_pic_per"> 
+      
+        
+ <form method="POST"  name="actualizar_pic_per"> 
         
 
    <input type="hidden" id="update_doc_per" name="update_doc_per"
@@ -126,6 +159,8 @@ unlink($filename_pic_per);
 
     <input type="hidden" id="id_data_update_per" name="id_data_update_per"
     value="<?php echo $row_usuarios['id_data_per']; ?>"> 
+
+
 
 
 
@@ -157,6 +192,9 @@ unlink($filename_pic_per);
 </div>
 
 <!-- cierre The Modal -->
+
+
+
 
 
 
@@ -352,3 +390,8 @@ $('.crop_image_pic_per<?php echo $row_usuarios['id_per']; ?>').click(function(ev
   });
 
 </script> 
+
+
+
+
+

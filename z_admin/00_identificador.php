@@ -79,7 +79,7 @@ $la_pic = $nnn_fot['pic_per'];
 
 else {
 
-$la_pic = 'img_per/000.jpg';
+$la_pic = 'img_personal/pic/000.jpg';
 
 }
 

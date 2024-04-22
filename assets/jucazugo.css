@@ -50,3 +50,22 @@
 {
   border-left: 4px solid #37b8df;
 }
+
+
+
+
+
+.divXXheight{       /*   para los divs donde se cargan las imagenes croppie */
+  height: 100%;
+  padding-bottom: 5px;  
+}
+
+
+
+
+
+
+.punterodd{
+  display: block;
+  cursor: pointer;
+}

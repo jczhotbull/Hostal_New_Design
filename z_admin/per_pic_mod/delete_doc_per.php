@@ -2,23 +2,31 @@
 
 
 
-<!-- ini modal eliminar logo -->
+<!--  modal eliminar pic doc -->
+<div class="modal fade" id="borrar_doc_per<?php echo $row_usuarios['id_per']; ?>"
+data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 
-<div class="modal fade" id="borrar_doc_per<?php echo $row_usuarios['id_per']; ?>" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-danger" id="exampleModalLabel">
-        <i class="fas fa-exclamation-triangle fa-lg"></i></h5>
+    <div class="modal-dialog">  <!-- tamaños modal-sm  modal-lg    modal-full-width --> 
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title text-danger" id="mySmallModalLabel">Warning</h5>
+      <!--          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button> --> 
+            </div>
 
 
-      </div>
-      <div class="modal-body">
-        <?php echo $row_usuarios['p_surname_per'];?>, <?php echo $row_usuarios['p_name_per'];?> <b>Doc or Id</b> will be deleted. 
-      </div>
-      <div class="modal-footer">
 
-  <form method="post" name="delete_pic_per"> 
+            <div class="modal-body">
+
+<?php echo $row_usuarios['p_surname_per'];?>, <?php echo $row_usuarios['p_name_per'];?> <b>Doc or Id Pic</b> will be deleted. 
+              
+            </div>
+
+
+            <div class="modal-footer">
+
+<form method="post" name="delete_pic_per"> 
 
     <input type="hidden" id="update_docX" name="update_docX"
     value="<?php echo $row_usuarios['doc_per']; ?>">  
@@ -33,21 +41,33 @@
 
 
 
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-    <button type="submit" name="borrarXX_doc_per" id="borrarXX_doc_per" class="btn btn-danger" >
-          <i class="fa-solid fa-trash-can"></i></button>   <!--  -->    
+<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-xmark fa-lg"></i></button>
 
-  </form>
+<button type="submit" class="ms-2 btn btn-outline-danger" name="borrarXX_doc_per" id="borrarXX_doc_per"><i class="far fa-trash-alt fa-lg"></i></button>
 
+</form> 
 
-
-
+            </div>
 
 
+        </div><!-- /.modal-content -->
 
-      </div>
-    </div>
-  </div>
-</div>
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-<!-- cierre modal de eliminar -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
