@@ -112,5 +112,7 @@ function hideAlert(alert_id) {
 }
 
 hideAlert('alert-error');
+hideAlert('alert-success');
+hideAlert('alert-info');
 
 </script>

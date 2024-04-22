@@ -37,6 +37,11 @@
         <link href="../assets/jucazugo.css" rel="stylesheet" type="text/css" />
 
 
+        <!-- croppie -->
+        <link rel="stylesheet"  href="00_croppie/croppie.css">
+        <script src="00_croppie/croppie.js"></script>
+
+
 
     </head>
 
